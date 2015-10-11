@@ -64,11 +64,15 @@
   },
   "devDependencies": {
     "blessed": "^0.1.61",
+    "browserify": "^11.2.0",
     "chai": "^3.0.0",
+    "gulp": "^3.9.0",
     "mocha": "^2.2.5",
     "multiline": "^1.0.2",
-    "react-tools": "^0.13.3",
-    "supertest": "^1.0.1"
+    "react": "^0.14.0",
+    "reactify": "^1.1.1",
+    "supertest": "^1.0.1",
+    "vinyl-source-stream": "^1.1.0"
   },
   "license": "MIT"
 }
