@@ -112,25 +112,37 @@ app.post('/account/password', passportConf.isAuthenticated, userController.postU
 app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConf.isAuthenticated, userController.getOauthUnlink);
 
-var mongoose     = require('mongoose');
-var Schema       = mongoose.Schema;
+/**
+ * OAuth authentication routes. (Sign in)
+ */
+app.get('/auth/instagram', passport.authenticate('instagram'));
+app.get('/auth/instagram/callback', passport.authenticate('instagram', { failureRedirect: '/login' }), function(req, res) {
+  res.redirect(req.session.returnTo || '/');
+});
+app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email', 'user_location'] }));
+app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), function(req, res) {
+  res.redirect(req.session.returnTo || '/');
+});
+app.get('/auth/github', passport.authenticate('github'));
+app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), function(req, res) {
+  res.redirect(req.session.returnTo || '/');
+});
+app.get('/auth/google', passport.authenticate('google', { scope: 'profile email' }));
+app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) {
+  res.redirect(req.session.returnTo || '/');
+});
+app.get('/auth/twitter', passport.authenticate('twitter'));
+app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/login' }), function(req, res) {
+  res.redirect(req.session.returnTo || '/');
+});
+app.get('/auth/linkedin', passport.authenticate('linkedin', { state: 'SOME STATE' }));
+app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/login' }), function(req, res) {
+  res.redirect(req.session.returnTo || '/');
+});
 
-var SpeakerSchema = new Schema({
-  name:{ type: String, default: '' },
-    company:{ type: String, default: '' },
-    title:{ type: String, default: '' },
-    description:{ type: String, default: '' },
-    picture:{ type: String, default: '' },
-    schedule:{ type: String, default: '' },
-    createdOn:{ type: Date,   default: Date.now}
-})
-
-var Speaker = mongoose.model('users', SpeakerSchema);
-
-var app = express();
-
-app.use(bodyParser())
-var router = express.Router();
+/**
+* Allow different formats
+*/
 
 app.use(function (req, res, next) {
   var format = req.param('format');
@@ -142,79 +154,26 @@ app.use(function (req, res, next) {
   next();
 });
 
-router.get('/', function(req, res) {
-  res.json(({message: 'Hello SPA'}))
-})
+/**
+*Test route
+*/
 
-router.route("/speakers")
-.post(function(req,res) {
-  var speaker = new Speaker();
-  speaker.name = req.body.name;
-     speaker.company = req.body.company;
-     speaker.title = req.body.title;
-     speaker.description = req.body.description;
-     speaker.picture = req.body.picture;
-     speaker.schedule = req.body.schedule;
+// router.get('/', function(req, res) {
+//   res.json(({message: 'Hello SPA'}))
+// })
 
-  speaker.save(function(err) {
-       if (err)
-         res.send(err);
-   // give some success message
-         res.json({ message: 'speaker successfully created!' });
-     });
-})
-.get(function(req,res) {
-  Speaker.find(function(err, speakers) {
-  if (err)
-    res.send(err)
+/**
+ * Error Handler.
+ */
+app.use(errorHandler());
 
-  res.json(speakers)
-  })
-})
-
-router.route('/speakers/:speaker_id')
-.get(function(req, res) {
-  Speaker.findById(req.params.speaker_id, function(err, speaker) {
-    if (err)
-        res.send(err)
-    res.json(speaker)
-  })
-
-
-})
-.put(function(req, res) {
-   Speaker.findById(req.params.speaker_id, function(err,
-     speaker) {
-     if (err)
-       res.send(err);
- // set the speakers properties (comes from the request)
-   speaker.name = req.body.name;
-   speaker.company = req.body.company;
-   speaker.title = req.body.title;
-   speaker.description = req.body.description;
-   speaker.picture = req.body.picture;
-   speaker.schedule = req.body.schedule;
- // save the data received
-   speaker.save(function(err) {
-    if (err)
-       res.send(err);
-       // give some success message
-       res.json({message: 'speaker successfully updated!'});
-    });
-  }); 
-})
-
-.delete(function(req, res) {
-  Speaker.remove({
-    _id : req.params.speaker_id
-  }, function(err, speaker) {
-    if (err)
-      res.send(err)
-
-    res.json({message: 'speaker deleted'})
-  })
-})
-
-app.use('/api', router)
+/**
+ * Start Express server.
+ */
+app.listen(app.get('port'), function() {
+  console.log('Express server listening on port %d in %s mode', app.get('port'), app.get('env'));
+});
 
 app.listen(port)
+
+module.exports = app;
