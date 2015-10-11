@@ -1,21 +1,23 @@
 var React = require('react');
+var request = require('request');
 var Task = require('./Task.jsx');
 
 modle.exports = React.createClass({
   getInitialState: function() {
     return {
-      data: [
-        {
-          title: 'First Task',
-          completed: false
-        },
-        {
-          title: 'Second Task',
-          completed: false
-        }
-      ]
+      tasks: []
     }
   },
+
+  componentDidMount: function() {
+        request('http://localhost:3000/self_api/tasks/', function(error, response, body) {
+            var result = JSON.parse(body);
+            if (this.isMounted()) {
+                this.setState(result.data);
+            }
+        }.bind(this));
+    },
+
   render: function() {
     return (
       <div className="task-list">
