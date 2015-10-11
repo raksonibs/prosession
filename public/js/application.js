@@ -13,5 +13,5 @@
  * below via "//= require [filename]".
  */
 
-//= require app
+//= require build/react.min
 //= require main

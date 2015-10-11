@@ -7,8 +7,6 @@ html
     meta(name='csrf-token', content=_csrf)
     title #{title} Prosession
     != css('main')
-    script(src="https://code.angularjs.org/2.0.0-alpha.34/angular2.sfx.dev.js")
-    != js('application')
   body
     include partials/header
     .container
@@ -16,3 +14,6 @@ html
       block content
 
     include partials/footer
+
+    != js('application')
+    script(src='/javascripts/build/react.min.js')
