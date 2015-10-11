@@ -1,0 +1,19 @@
+{
+  "name": "conference-api",
+  "version": "1.0.0",
+  "description": "A basic api for teaching purposes",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.0.1",
+    "express": "^4.0.0",
+    "method-override": "^1.0.0",
+    "mongoose": "^3.6.13",
+    "morgan": "^1.0.0",
+    "nodemon": "^1.2.0"
+  }
+}
