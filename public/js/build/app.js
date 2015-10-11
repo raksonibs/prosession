@@ -18978,25 +18978,62 @@ module.exports = require('./lib/React');
 var React = require('react');
 
 module.exports = React.createClass({displayName: "exports",
-render: function() {
-    return (
-    React.createElement("h1", null, "Hello, world from a React.js Component!")
-    )    
-}
+    render: function() {
+        return (
+            React.createElement("div", {className: "task-item"}, 
+              React.createElement("h2", null, " ", this.props.title)
+            )
+        )
+    }
 });
 
 },{"react":156}],158:[function(require,module,exports){
 var React = require('react');
-var HelloWorld = require('./HelloWorld.jsx');
+var Task = require('./Task.jsx');
+
+modle.exports = React.createClass({displayName: "exports",
+  getInitialState: function() {
+    return {
+      data: [
+        {
+          title: 'First Task',
+          completed: false
+        },
+        {
+          title: 'Second Task',
+          completed: false
+        }
+      ]
+    }
+  },
+  render: function() {
+    return (
+      React.createElement("div", {className: "task-list"}, 
+        this.state.data.map(function(task) {
+          return (
+              React.createElement(Task, {
+                title: task.title, 
+                completed: task.completed}
+              )
+            )
+        })
+      )
+      )
+  }
+})
+
+},{"./Task.jsx":157,"react":156}],159:[function(require,module,exports){
+var React = require('react');
+var Tasks = require('./Tasks.jsx');
 var $ = jQuery = require('../../libraries/jquery/dist/jquery');
 var bootstrap = require('../../libraries/bootstrap-sass-official/assets/javascripts/bootstrap');
 
 React.render(
-    React.createElement(HelloWorld, null),
-    document.getElementById('example')
+    React.createElement(Tasks, null),
+    document.getElementById('tasks')
 );
 
-},{"../../libraries/bootstrap-sass-official/assets/javascripts/bootstrap":159,"../../libraries/jquery/dist/jquery":160,"./HelloWorld.jsx":157,"react":156}],159:[function(require,module,exports){
+},{"../../libraries/bootstrap-sass-official/assets/javascripts/bootstrap":160,"../../libraries/jquery/dist/jquery":161,"./Tasks.jsx":158,"react":156}],160:[function(require,module,exports){
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -21361,7 +21398,7 @@ if (typeof jQuery === 'undefined') {
 
 }(jQuery);
 
-},{}],160:[function(require,module,exports){
+},{}],161:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -30573,4 +30610,4 @@ return jQuery;
 
 }));
 
-},{}]},{},[158]);
+},{}]},{},[159]);

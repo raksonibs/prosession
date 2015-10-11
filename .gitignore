@@ -1,6 +1,8 @@
+./public/js/build/app.js
 ./config/secrets.js
 /node_modules
 npm-debug.log
 ./public/vendor
 /public/js/build/
+./public/js/build/app.js
 /public/libraries
