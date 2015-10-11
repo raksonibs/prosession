@@ -6,3 +6,4 @@ npm-debug.log
 /public/js/build/
 ./public/js/build/app.js
 /public/libraries
+notes.md
