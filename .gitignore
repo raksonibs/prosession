@@ -3,3 +3,4 @@
 npm-debug.log
 ./public/vendor
 /public/js/src/
+/public/libraries
