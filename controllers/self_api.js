@@ -1,39 +1,41 @@
 var express = require('express');
 var router = express.Router();
-
-var tasks = {
-    tasks: [
-        {
-            task_id: 1,
-            title: 'First Task',
-        },
-        {
-            task_id: 2,
-            title: 'Second Task',
-        }
-    ]
-}
+var Task = require('../models/Task');
+var secrets = require('../config/secrets');
 
 router.get('/tasks', function(req, res) {
-    res.json({data: tasks});
+  Task.find({}, function(err, tasks) {
+    if (err) return next(err)
+
+        res.json(tasks);  
+});
 });
 
 router.get('/tasks/:task_id', function(req, res) {
   var task_id = req.params.task_id;
   // Switch to search via mongo
-  for (i = 0, len = data.tasks.length; i < len; i++) {
-        if (data.tasks[i].task_id === parseInt(task_id)) {
-            res.json({data: task});
-        }
-    }
-    res.json({data: "No task found."});
+  Task.findById(task_id, function(err, task) {
+    if (err) return next(err)
+        res.json({data: task})
+})
+  res.json({data: "No task found."});
 })
 
 router.post('/tasks', function(req, res) {
-    var task = req.body.title
-    tasks['tasks'].push({task: task, task_id: 3})
+    var task = new Task({
+        title: req.body.title,
+        user_id: req.body.user_id
+    });
 
-    res.json({data: tasks})
+    task.save(function(err) {
+        if (err) return next(err)
+            Task.find({}, function(err, tasks) {
+                if (err) return next(err)
+
+                    res.json(tasks);  
+            });
+    })
+
 })
 
 module.exports = router;
