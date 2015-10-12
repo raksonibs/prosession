@@ -21,6 +21,17 @@ html {
   font-family: 'Amatic SC', cursive;
 }
 
+h3 {
+  font-family: 'Amatic SC', cursive;
+}
+
+.form-group input {
+  background: #E8E1E1;
+  width: 50%;
+  left: 25%;
+  position: relative;
+}
+
 body {
   padding-top: 60px;
   margin-bottom: 75px;
@@ -73,7 +84,13 @@ footer {
   margin-right: 6px;
 }
 
-.center-block {
+.center-block,
+.login-form {
+
+  .btn-default {
+    background: black;
+  }
+
   text-align: center;
 
   h1 {
@@ -86,12 +103,14 @@ footer {
     margin: 50px;
   }
 
-  .btn {
+  .btn,
+  button.btn.btn-primary {
     font-family: 'Amatic SC', cursive;
     border-radius: 15px;
     padding: 20px 40px;
     color: white;
     font-size: 2rem;
+    margin: 15px;
   }
 
   .btn:hover {
