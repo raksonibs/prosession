@@ -2,7 +2,7 @@ var React = require('react');
 var request = require('request');
 var Task = require('./Task.jsx');
 
-modle.exports = React.createClass({
+module.exports = React.createClass({
   getInitialState: function() {
     return {
       tasks: []
@@ -21,7 +21,7 @@ modle.exports = React.createClass({
   render: function() {
     return (
       <div className="task-list">
-        {this.state.data.map(function(task) {
+        {this.state.tasks.map(function(task) {
           return (
               <Task
                 title={task.title}

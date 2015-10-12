@@ -29,4 +29,11 @@ router.get('/tasks/:task_id', function(req, res) {
     res.json({data: "No task found."});
 })
 
+router.post('/tasks', function(req, res) {
+    var task = req.body.title
+    tasks['tasks'].push({task: task, task_id: 3})
+
+    res.json({data: tasks})
+})
+
 module.exports = router;
