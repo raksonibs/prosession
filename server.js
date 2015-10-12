@@ -45,11 +45,18 @@ var app = express();
 /**
 * Connect to MongoDB.
 */
-mongoose.connect(secrets.db);
+if (process.env.HOME === '/Users/oskarniburski') {
+  console.log("connecting to local db");
+  var db = "mongodb://localhost/myapp";
+  mongoose.connect(db);
+} else {
+  console.log("connecting to prod db");
+  mongoose.connect(secrets.db);
+}
+
 mongoose.connection.on('error', function() {
   console.error('MongoDB Connection Error. Please make sure that MongoDB is running.');
 });
-
 
 /**
 *Setup Express

@@ -1,19 +1,21 @@
 extends layout
 
 block content
-  #tasks
-    
   .row
     .col-sm-12
       .center-block
-        h1 Prosession
-        .images
-          .soup
-          .euk
-          .jelly
-          .flower
-          .insect
-        p
-          a.btn.btn-default.login(href='/login', role='button') Login
-        p
-          a.btn.btn-default.signup(href='/signup', role='button') Sign up
+        if user
+          h1 Tasks
+          #tasks
+        else
+          h1 Prosession
+          .images
+            .soup
+            .euk
+            .jelly
+            .flower
+            .insect
+          p
+            a.btn.btn-default.login(href='/login', role='button') Login
+          p
+            a.btn.btn-default.signup(href='/signup', role='button') Sign up

@@ -3,19 +3,28 @@
 @import "vendor/bootstrap-social";
 @import "themes/default";
 
+@import url(https://fonts.googleapis.com/css?family=Amatic+SC);
+
 @base-url: "../images/";
 
 // Scaffolding
 // -------------------------
 
+* {
+  background-color: aliceblue;
+  font-family: 'Amatic SC', cursive;
+}
+
 html {
   position: relative;
   min-height: 100%;
+  font-family: 'Amatic SC', cursive;
 }
 
 body {
   padding-top: 60px;
   margin-bottom: 75px;
+  background-color: aliceblue;
 }
 
 footer {
@@ -67,12 +76,18 @@ footer {
 .center-block {
   text-align: center;
 
+  h1 {
+    font-family: 'Amatic SC', cursive;
+  }
+
   p {
+    font-family: 'Amatic SC', cursive;
     display: inline-block;
     margin: 50px;
   }
 
   .btn {
+    font-family: 'Amatic SC', cursive;
     border-radius: 15px;
     padding: 20px 40px;
     color: white;
