@@ -59,7 +59,10 @@ userSchema.methods.gravatar = function(size) {
   if (!size) size = 200;
   if (!this.email) return 'https://gravatar.com/avatar/?s=' + size + '&d=retro';
   var md5 = crypto.createHash('md5').update(this.email).digest('hex');
-  return 'https://gravatar.com/avatar/' + md5 + '?s=' + size + '&d=retro';
+  // NTD: set to actual url for soup
+  var startUrl = "/http://imgur.com/gallery/dZvak2P"
+  // return 'https://gravatar.com/avatar/' + md5 + '?s=' + size + '&d=retro';
+  return startUrl
 };
 
 module.exports = mongoose.model('User', userSchema);

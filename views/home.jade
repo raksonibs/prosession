@@ -5,8 +5,16 @@ block content
     .col-sm-12
       .center-block
         if user
-          h1 Tasks
-          #tasks
+          h1 Evolve.
+          .row
+            .col-sm-6.col-md-6.col-lg-6.left-col
+              #dos
+                h3 Dos
+                #tasks
+            .col-sm-6.col-md-6.col-lg-6.right-col
+              #donts
+                h3 Don'ts
+                #no-tasks
         else
           h1 Prosession
           .images
