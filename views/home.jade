@@ -11,6 +11,16 @@ block content
               #dos
                 h3 Dos
                 #tasks
+                #task-form
+                  form(action="/self_api/tasks" method="POST")
+                    input(type='hidden', name='_csrf', value=_csrf)
+                    .col-sm-8.col-sm-offset-2
+                      .form-group                        
+                        input.form-control(type='text', name='title', id='title', placeholder='Set up a Task', autofocus=true)
+                        input(type='hidden', name='user_id', value="#{user._id}")
+                        button.task-submit(type='submit')
+                          i.fa.fa-cube
+
             .col-sm-6.col-md-6.col-lg-6.right-col
               #donts
                 h3 Don'ts
