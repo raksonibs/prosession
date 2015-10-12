@@ -12,8 +12,9 @@ module.exports = React.createClass({
   componentDidMount: function() {
         request('http://localhost:3000/self_api/tasks/', function(error, response, body) {
             var result = JSON.parse(body);
+            console.log(result)
             if (this.isMounted()) {
-                this.setState(result.data);
+                this.setState(result);
             }
         }.bind(this));
     },

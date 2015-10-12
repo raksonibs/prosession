@@ -6,9 +6,9 @@ var secrets = require('../config/secrets');
 router.get('/tasks', function(req, res) {
   Task.find({}, function(err, tasks) {
     if (err) return next(err)
-
-        res.json(tasks);  
-});
+        var tasksJSON = {tasks: tasks}
+        res.json(tasksJSON);  
+    });
 });
 
 router.get('/tasks/:task_id', function(req, res) {
