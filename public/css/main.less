@@ -3,6 +3,8 @@
 @import "vendor/bootstrap-social";
 @import "themes/default";
 
+@base-url: "../images/";
+
 // Scaffolding
 // -------------------------
 
@@ -60,4 +62,90 @@ footer {
 .fa,
 [class^='ion-'] {
   margin-right: 6px;
+}
+
+.center-block {
+  text-align: center;
+
+  p {
+    display: inline-block;
+    margin: 50px;
+  }
+
+  .btn {
+    border-radius: 15px;
+    padding: 20px 40px;
+    color: white;
+    font-size: 2rem;
+  }
+
+  .btn:hover {
+    cursor: pointer;
+  }
+
+  .login {
+    background: #00B8FF;
+  }
+
+  .login:hover {
+    background: #00D8FF;
+  }
+
+  .signup:hover {
+    background: #39F239;
+  }
+
+  .signup {
+    background: #39E239;
+  }
+
+  .images div {
+    width: 20%;
+    height: 250px;
+    background-size: cover;
+    display: inline-block;
+
+    &.flower {
+      background-image: url("../images/flower.png");
+    }
+
+    &.euk {
+      background-image: url("../images/euk.png");
+    }
+
+    &.insect {
+      background-image: url("../images/insect.png");
+    }
+
+    &.jelly {
+      background-image: url("../images/jelly.png");
+    }
+
+    &.soup {
+      background-image: url("../images/soup.png");
+    }
+  }
+  
+}
+// ntd: less loop
+@media screen and  (max-width: 900px)  {
+   .images div {
+      width: 20% !important;
+      height: 150px !important;
+    }
+}
+
+
+@media screen and  (max-width: 720px)  {
+   .images div {
+      width: 20% !important;
+      height: 130px !important;
+    }
+}
+
+@media screen and  (max-width: 550px)  {
+   .images div {
+      width: 20% !important;
+      height: 80px !important;
+    }
 }
