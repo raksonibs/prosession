@@ -38,4 +38,29 @@ router.post('/tasks', function(req, res) {
 
 })
 
+router.put('/tasks', function(req, res) {
+
+  Task.findById(req.body.task_id, function(err, task) {
+      if (err) return next(err)
+      task.update({title: req.body.title}, function(err, task) {
+        if (err) return next(err)
+        res.json({data: task})
+      })
+  })
+    var task = new Task({
+        title: req.body.title,
+        user_id: req.body.user_id
+    });
+
+    task.save(function(err) {
+        if (err) return next(err)
+            Task.find({}, function(err, tasks) {
+                if (err) return next(err)
+
+                    res.json(tasks);  
+            });
+    })
+
+})
+
 module.exports = router;
