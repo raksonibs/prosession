@@ -13,12 +13,25 @@ router.get('/tasks', function(req, res) {
 
 router.get('/tasks/:task_id', function(req, res) {
   var task_id = req.params.task_id;
+  console.log(task_id)
   // Switch to search via mongo
   Task.findById(task_id, function(err, task) {
     if (err) return next(err)
         res.json({data: task})
 })
   res.json({data: "No task found."});
+})
+
+router.post('/tasks/delete/:task_id', function(req, res) {
+  var task_id = req.params.task_id;
+
+   Task.remove({_id: task_id}, function(err) {
+    // ntd: not via react right now:()
+    if (err) next(err)
+    req.flash('errors', { msg: 'Deleted!' });
+    return res.redirect('/');
+   })
+
 })
 
 router.post('/tasks', function(req, res) {
@@ -31,7 +44,6 @@ router.post('/tasks', function(req, res) {
         if (err) return next(err)
             Task.find({}, function(err, tasks) {
                 if (err) return next(err)
-
                     res.json(tasks);  
             });
     })

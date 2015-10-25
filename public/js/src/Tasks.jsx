@@ -11,8 +11,7 @@ module.exports = React.createClass({
 
   componentDidMount: function() {
         request('http://localhost:3000/self_api/tasks/', function(error, response, body) {
-            var result = JSON.parse(body);
-            console.log(result)
+            var result = JSON.parse(body);            
             if (this.isMounted()) {
                 this.setState(result);
             }
@@ -24,9 +23,9 @@ module.exports = React.createClass({
       <div className="task-list">
         {this.state.tasks.map(function(task) {
           return (
-              <Task
-                title={task.title}
-                completed={task.completed}
+              <Task                
+                _id={task._id}
+                title={task.title}                
               />
             )
         })}
