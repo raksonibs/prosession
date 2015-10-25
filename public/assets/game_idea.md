@@ -1,0 +1,2 @@
+- ionic game where put daily points to goals and then can level up or delevel.
+- basically a user, with goals and goals have points + additional description details like time length and notes when you complete it for the day?
