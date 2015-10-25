@@ -6,6 +6,8 @@ block content
       .center-block
         if user
           h1 Evolve.
+          .current-form
+            img(src='#{convertPointsToImage(user.points)}')
           h3 
             | Points: #{user.points || 0}
           .row

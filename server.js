@@ -188,6 +188,23 @@ app.use(function (req, res, next) {
  */
 app.use(errorHandler());
 
+app.locals.convertPointsToImage = function(points) {
+  var pointSystem = { 1: "images/soup.png",
+                      2: "images/pro.png",
+                      3: "images/euk.png",
+                      4: "images/jelly.png",
+                      5: "images/sponge.png",
+                      6: "images/worm.png",
+                      7: "images/insect.png",
+                      8: "images/flower.png",
+                      9: "images/flower.png",
+                      10: "images/flower.png", 
+                      11: "images/flower.png",
+                    };
+  var picture = pointSystem[points];
+  return picture;
+}
+
 /**
  * Start Express server.
  */
@@ -198,3 +215,4 @@ app.listen(app.get('port'), function() {
 app.listen(port)
 
 module.exports = app;
+
