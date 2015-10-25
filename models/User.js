@@ -13,6 +13,7 @@ var userSchema = new mongoose.Schema({
   instagram: String,
   linkedin: String,
   tokens: Array,
+  points: { type: Number, default: 0 },
 
   profile: {
     name: { type: String, default: '' },

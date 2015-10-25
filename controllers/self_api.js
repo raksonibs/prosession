@@ -2,18 +2,34 @@ var express = require('express');
 var router = express.Router();
 var Task = require('../models/Task');
 var secrets = require('../config/secrets');
+var User = require('../models/User');
 
 router.get('/tasks', function(req, res) {
-  Task.find({}, function(err, tasks) {
+  Task.find({user_id: req.user._id}, function(err, tasks) {
     if (err) return next(err)
         var tasksJSON = {tasks: tasks}
         res.json(tasksJSON);  
     });
 });
 
-router.get('/tasks/:task_id', function(req, res) {
+router.get('/tasks/complete/:task_id', function(req, res) {
   var task_id = req.params.task_id;
-  console.log(task_id)
+  Task.remove({_id: task_id}, function(err) {
+    // ntd: not via react right now:()
+    if (err) next(err)
+    User.findById(req.user.id, function(err, user) {
+      user.points += 1;
+      user.save(function(err) {
+        if (err) next(err)
+        req.flash('errors', { msg: 'Points updated' });
+        return res.redirect('/');
+      })
+    })
+   })
+});
+
+router.get('/tasks/:task_id', function(req, res) {
+  var task_id = req.params.task_id;  
   // Switch to search via mongo
   Task.findById(task_id, function(err, task) {
     if (err) return next(err)
@@ -44,7 +60,8 @@ router.post('/tasks', function(req, res) {
         if (err) return next(err)
             Task.find({}, function(err, tasks) {
                 if (err) return next(err)
-                    res.json(tasks);  
+                req.flash('info', { msg: 'Created!' });
+                return res.redirect('/');
             });
     })
 
