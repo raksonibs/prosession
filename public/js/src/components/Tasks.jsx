@@ -12,24 +12,25 @@ module.exports = React.createClass({
 
   delete: function(e) {
     e.preventDefault();
-    action.delete(this.props.item);
+    action.delete(this.props.task);
   },
 
   render: function() {
     return (
-      <div className="task-list">
-        {this.state.tasks.map(function(task, index) {
-          return (
-              <Task                
-                _id={task._id}
-                title={task.title}  
-                key={"task"+index}              
-              />
-            )
-        })}
-      </div>
+      <div>
+        <div>
+          {
+            this.props.tasks.map(function(task, index) {
+              // react needs key for something like this
+              return (
+                <Task task={task} _id={task._id} title={task.title}  key={"task"+index} />
+              )
+            })
+          }
+        </div>
+        <TaskAddItem />
 
-      <TaskAddItem />
-      )
+      </div>
+    )
   }
 })
