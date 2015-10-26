@@ -15,27 +15,21 @@ module.exports = React.createClass({
     action.delete(this.props.item);
   },
 
-  componentDidMount: function() {
-        request('http://localhost:3000/self_api/tasks/', function(error, response, body) {
-            var result = JSON.parse(body);            
-            if (this.isMounted()) {
-                this.setState(result);
-            }
-        }.bind(this));
-    },
-
   render: function() {
     return (
       <div className="task-list">
-        {this.state.tasks.map(function(task) {
+        {this.state.tasks.map(function(task, index) {
           return (
               <Task                
                 _id={task._id}
-                title={task.title}                
+                title={task.title}  
+                key={"task"+index}              
               />
             )
         })}
       </div>
+
+      <TaskAddItem />
       )
   }
 })
