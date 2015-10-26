@@ -22,7 +22,11 @@ router.get('/tasks/complete/:task_id', function(req, res) {
       user.save(function(err) {
         if (err) next(err)
         req.flash('errors', { msg: 'Points updated' });
-        return res.redirect('/');
+        Task.find({user_id: req.user._id}, function(err, tasks) {
+          if (err) return next(err)
+              var tasksJSON = {tasks: tasks}
+              res.json(tasksJSON);  
+          });
       })
     })
    })
@@ -45,7 +49,11 @@ router.post('/tasks/delete/:task_id', function(req, res) {
     // ntd: not via react right now:()
     if (err) next(err)
     req.flash('errors', { msg: 'Deleted!' });
-    return res.redirect('/');
+    Task.find({user_id: req.user._id}, function(err, tasks) {
+    if (err) return next(err)
+        var tasksJSON = {tasks: tasks}
+        res.json(tasksJSON);  
+    });
    })
 
 })
@@ -60,8 +68,12 @@ router.post('/tasks', function(req, res) {
         if (err) return next(err)
             Task.find({}, function(err, tasks) {
                 if (err) return next(err)
-                req.flash('info', { msg: 'Created!' });
-                return res.redirect('/');
+                // req.flash('info', { msg: 'Created!' });
+                Task.find({user_id: req.user._id}, function(err, tasks) {
+                if (err) return next(err)
+                    var tasksJSON = {tasks: tasks}
+                    res.json(tasksJSON);  
+                });
             });
     })
 
@@ -86,7 +98,11 @@ router.put('/tasks', function(req, res) {
             Task.find({}, function(err, tasks) {
                 if (err) return next(err)
 
-                    res.json(tasks);  
+                    Task.find({user_id: req.user._id}, function(err, tasks) {
+                    if (err) return next(err)
+                        var tasksJSON = {tasks: tasks}
+                        res.json(tasksJSON);  
+                    });
             });
     })
 

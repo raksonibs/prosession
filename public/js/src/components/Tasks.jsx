@@ -1,12 +1,18 @@
 var React = require('react');
 var request = require('request');
 var Task = require('./Task.jsx');
+var action = require('./../actions/TaskActionCreator.jsx');
 
 module.exports = React.createClass({
   getInitialState: function() {
     return {
       tasks: []
     }
+  },
+
+  delete: function(e) {
+    e.preventDefault();
+    action.delete(this.props.item);
   },
 
   componentDidMount: function() {
