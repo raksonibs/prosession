@@ -2,6 +2,10 @@ var React = require('react');
 var action = require('./../actions/TaskActionCreator.jsx');
 
 module.exports = React.createClass({
+    delete: function(e) {
+      e.preventDefault();
+      action.delete(this.props.task);
+    },
     render: function() {
         return (
             <div className="task-item">

@@ -40,7 +40,7 @@ function TaskStore() {
   function triggerListeners() {
     // for each es6?
     listeners.forEach(function(listener) {
-      listener(items)
+      listener(tasks)
     })
   }
 
@@ -63,7 +63,7 @@ function TaskStore() {
     getTasks: getTasks,
     onChange: onChange
   }
-
-
-
 }
+
+module.exports = new TaskStore();
+

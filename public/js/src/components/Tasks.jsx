@@ -2,23 +2,15 @@ var React = require('react');
 var request = require('request');
 var Task = require('./Task.jsx');
 var action = require('./../actions/TaskActionCreator.jsx');
+var TaskAddItem = require('./TasksAddItem.jsx');
 
 module.exports = React.createClass({
-  getInitialState: function() {
-    return {
-      tasks: []
-    }
-  },
-
-  delete: function(e) {
-    e.preventDefault();
-    action.delete(this.props.task);
-  },
-
   render: function() {
     return (
       <div>
         <div>
+          { console.log('printing this.props.tasks')}
+          { console.log(this.props.tasks) }
           {
             this.props.tasks.map(function(task, index) {
               // react needs key for something like this
