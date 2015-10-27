@@ -110,7 +110,9 @@ app.use(function(req, res, next) {
   if (/api/i.test(req.path)) req.session.returnTo = req.path;
   next();
 });
-app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
+
+// app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
+app.use(express.static(path.join(__dirname, '.tmp'), { maxAge: 31557600000 }))
 
 /**
  * Primary app routes.
@@ -208,8 +210,8 @@ app.locals.convertPointsToImage = function(points) {
 /**
  * Start Express server.
  */
-app.listen(app.get('port'), function() {
-  console.log('Express server listening on port %d in %s mode', app.get('port'), app.get('env'));
+app.listen(8888, function() {
+  console.log('Express server listening on port %d in %s mode', 8888, app.get('env'));
 });
 
 app.listen(port)

@@ -8,3 +8,4 @@ npm-debug.log
 /public/libraries
 notes.md
 /public/css/vendor
+.tmp/
