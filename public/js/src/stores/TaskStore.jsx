@@ -4,9 +4,8 @@ var helper = require('./../helpers/RestHelper.js')
 function TaskStore() {
   var tasks = []
 
-  helper.get('/self_api/tasks/')
-  .then(function(data) {
-    tasks = data;
+  helper.get('/self_api/tasks/').then(function(data) {        
+    tasks = data.tasks;
     triggerListeners();
   })
 
@@ -32,9 +31,14 @@ function TaskStore() {
     triggerListeners()
   }
 
-  function addTask(task) {
+  function addTask(task) {            
     tasks.push(task)
-    triggerListeners()
+    // push task to express
+    helper.post('/self_api/tasks', task).then(function(data) {        
+    // should i be setting the tasks like this all the time? probably not.
+    tasks = data.tasks;
+    triggerListeners();
+  })
   }
 
   function triggerListeners() {

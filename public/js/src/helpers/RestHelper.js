@@ -10,5 +10,17 @@ module.exports = {
         error: error
       })
     })
+  },
+  post: function(url, data) {
+    return new Promise(function(success, error) {
+      $.ajax({
+        url: url,
+        data: data,
+        method: "POST",
+        dataType: "json",
+        success: success,
+        error: error
+      })
+    })
   }
 }

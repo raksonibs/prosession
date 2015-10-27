@@ -45,3 +45,5 @@ gulp.task('serve', ['bundle', 'live-server'], function() {
     port: 9009
   })
 })
+
+gulp.task('default', ['js', 'watch']);

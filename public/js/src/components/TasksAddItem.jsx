@@ -11,7 +11,7 @@ module.exports = React.createClass({
   addTask: function(e) {
     e.preventDefault();
     action.add({
-      name: this.state.input
+      title: this.state.input
     })
 
     this.setState({

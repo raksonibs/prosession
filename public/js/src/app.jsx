@@ -6,6 +6,8 @@ var bootstrap = require('../../libraries/bootstrap-sass-official/assets/javascri
 var taskStore = require('./stores/TaskStore.jsx');
 
 var initial = taskStore.getTasks();
+console.log('printing initial getTasks BABY')
+console.log(initial)
 
 function render() {
   React.render(

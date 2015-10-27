@@ -15,7 +15,7 @@ module.exports = React.createClass({
             this.props.tasks.map(function(task, index) {
               // react needs key for something like this
               return (
-                <Task task={task} _id={task._id} title={task.title}  key={"task"+index} />
+                <Task task={task} _id={task._id} title={task.title} key={"task"+index} />
               )
             })
           }
