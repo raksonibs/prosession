@@ -78,7 +78,6 @@ app.use(methodOverride());
 app.use(cookieParser());
 if (process.env.HOME === '/Users/oskarniburski') {
   console.log("connecting to local session db");
-  var db = "mongodb://localhost/myapp";
   app.use(session({
   resave: true,
   saveUninitialized: true,
